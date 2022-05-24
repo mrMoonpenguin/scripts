@@ -1,0 +1,10 @@
+#!/bin/bash
+
+name=$1
+inc=$2
+for f in *; do
+    ext="${f##*.}"
+    fn="${f%.*}"
+    mv "$f" "${name} (${inc}).${ext}"
+    inc=$((inc+1))
+done

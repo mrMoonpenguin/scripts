@@ -1,0 +1,11 @@
+#!/bin/bash
+
+mkdir -p "done"
+
+for f in *; do
+    ext="${f##*.}"
+    fn="${f%.*}"
+    ffmpeg -i "$f" -vcodec libx265 -crf 27 -tune fastdecode -preset ultrafast "temp.${ext}"
+    rm "$f"
+    mv "temp.${ext}" "done/${fn}.${ext}"
+done
